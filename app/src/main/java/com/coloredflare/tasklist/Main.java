@@ -12,8 +12,8 @@ import android.widget.ListView;
 
 import com.coloredflare.tasklist.db.Database;
 import com.coloredflare.tasklist.db.DatabaseFactory;
-
-import java.util.ArrayList;
+import com.coloredflare.tasklist.db.List;
+import com.coloredflare.tasklist.db.Lists;
 
 
 public class Main extends ActionBarActivity {
@@ -27,18 +27,16 @@ public class Main extends ActionBarActivity {
 
 
 		Database database = DatabaseFactory.getDatabase();
-		database.addNewTask("test taskuri");
-		final ArrayList<String> values = database.getAllLists();
+		final Lists values = database.getLists();
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, values);
+        ArrayAdapter<List> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, values);
 
         listView.setAdapter(adapter);
 
         AdapterView.OnItemClickListener listener = new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.d("tasklist", values.get(position));
+                Log.d("tasklist", values.get(position).toString());
             }
         };
 
