@@ -1,8 +1,7 @@
 package com.coloredflare.tasklist;
 
-import android.content.DialogInterface;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -10,6 +9,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.coloredflare.tasklist.db.Database;
+import com.coloredflare.tasklist.db.DatabaseFactory;
+
+import java.util.ArrayList;
 
 
 public class Main extends ActionBarActivity {
@@ -21,11 +25,10 @@ public class Main extends ActionBarActivity {
 
         ListView listView = (ListView) findViewById(R.id.listView);
 
-        final String[] values = new String[] { "Android", "iPhone", "WindowsMobile",
-                "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
-                "Linux", "OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux",
-                "OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux", "OS/2",
-                "Android", "iPhone", "WindowsMobile" };
+
+		Database database = DatabaseFactory.getDatabase();
+		database.addNewTask("test taskuri");
+		final ArrayList<String> values = database.getAllLists();
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, values);
@@ -35,7 +38,7 @@ public class Main extends ActionBarActivity {
         AdapterView.OnItemClickListener listener = new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.d("tasklist", values[position]);
+                Log.d("tasklist", values.get(position));
             }
         };
 
