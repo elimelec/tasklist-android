@@ -7,12 +7,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.coloredflare.tasklist.db.Database;
 import com.coloredflare.tasklist.db.DatabaseFactory;
-import com.coloredflare.tasklist.db.List;
 import com.coloredflare.tasklist.db.Lists;
 
 
@@ -29,7 +27,8 @@ public class Main extends ActionBarActivity {
 		Database database = DatabaseFactory.getDatabase();
 		final Lists values = database.getLists();
 
-        ArrayAdapter<List> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, values);
+
+        ListAdapter adapter = new ListAdapter(this, R.layout.list_simple_textview, values);
 
         listView.setAdapter(adapter);
 

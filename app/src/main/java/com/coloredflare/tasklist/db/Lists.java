@@ -3,15 +3,20 @@ package com.coloredflare.tasklist.db;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Lists extends ArrayList <List> {
+public class Lists {
+    ArrayList<List> lists;
 
 	public Lists() {
 		List[] lists = new List[] { new List(0,"Android"), new List(1,"Mac"), new List(2, "Windows")};
-		Collections.addAll(this, lists);
+        this.lists = new ArrayList<>();
+		Collections.addAll(this.lists, lists);
 	}
 
-	@Override
 	public List get(int index) {
-		return super.get(index);
+		return lists.get(index);
 	}
+
+    public int count() {
+        return lists.size();
+    }
 }
