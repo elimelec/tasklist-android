@@ -15,8 +15,48 @@ public class DB implements Database {
 		return lists;
 	}
 
-	@Override
+    @Override
+    public List getList(int id) {
+        return null;
+    }
+
+    @Override
 	public Tasks getTasks(List list) {
 		return tasks;
 	}
+
+    @Override
+    public Task getTask(int id) {
+        return null;
+    }
+
+    @Override
+    public void deleteList(List list) {
+
+    }
+
+    @Override
+    public void deleteTask(Task task) {
+
+    }
+
+    @Override
+    public void addList(List list) {
+
+    }
+
+    @Override
+    public void addTask(Task task) {
+
+    }
+
+    @Override
+    public void updateList(List list) {
+
+    }
+
+    @Override
+    public void updateTask(Task task) {
+
+    }
 }
