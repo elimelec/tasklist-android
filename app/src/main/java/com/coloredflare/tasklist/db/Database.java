@@ -4,6 +4,7 @@ public interface Database {
 	Lists getLists();
     List getList(int id);
 	Tasks getTasks(List list);
+	Tasks getTasks(int listId);
     Task getTask(int id);
 
     void deleteList(List list);

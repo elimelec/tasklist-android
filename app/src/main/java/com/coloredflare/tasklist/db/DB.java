@@ -25,7 +25,12 @@ public class DB implements Database {
 		return tasks;
 	}
 
-    @Override
+	@Override
+	public Tasks getTasks(int listId) {
+		return tasks;
+	}
+
+	@Override
     public Task getTask(int id) {
         return null;
     }
