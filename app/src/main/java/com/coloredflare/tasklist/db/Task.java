@@ -13,5 +13,9 @@ public class Task {
 	public String toString() {
 		return name;
 	}
+
+	public int getId() {
+		return id;
+	}
 }
 
