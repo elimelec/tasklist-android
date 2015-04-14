@@ -14,12 +14,21 @@ import com.coloredflare.tasklist.db.Lists;
 
 public class Main extends ActionBarActivity {
 
+    private Lists lists;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
         updateListView();
+
+    }
+
+    public void addList(View view){
+        Intent intent = new Intent(Main.this, AddListActivity.class);
+        intent.putExtra("newListId", lists.count());
+        startActivity(intent);
 
     }
 
@@ -34,10 +43,10 @@ public class Main extends ActionBarActivity {
 
 
         Database database = DatabaseFactory.getDatabase(this);
-        final Lists values = database.getLists();
+        lists = database.getLists();
 
 
-        ListAdapter adapter = new ListAdapter(this, R.layout.list_simple_textview, values);
+        ListAdapter adapter = new ListAdapter(this, R.layout.list_simple_textview, lists);
 
         listView.setAdapter(adapter);
 
