@@ -1,17 +1,13 @@
 package com.coloredflare.tasklist;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.coloredflare.tasklist.db.Database;
 import com.coloredflare.tasklist.db.DatabaseFactory;
-import com.coloredflare.tasklist.db.Lists;
-import com.coloredflare.tasklist.db.Task;
 import com.coloredflare.tasklist.db.Tasks;
 
 
@@ -27,7 +23,7 @@ public class ListActivity extends ActionBarActivity {
         ListView listView = (ListView) findViewById(R.id.listView);
 
 
-        Database database = DatabaseFactory.getDatabase();
+        Database database = DatabaseFactory.getDatabase(this);
         final Tasks values = database.getTasks(listId);
 
 

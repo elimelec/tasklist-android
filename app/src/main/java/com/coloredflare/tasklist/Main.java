@@ -3,9 +3,6 @@ package com.coloredflare.tasklist;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -25,7 +22,7 @@ public class Main extends ActionBarActivity {
         ListView listView = (ListView) findViewById(R.id.listView);
 
 
-		Database database = DatabaseFactory.getDatabase();
+		Database database = DatabaseFactory.getDatabase(this);
 		final Lists values = database.getLists();
 
 

@@ -1,13 +1,17 @@
 package com.coloredflare.tasklist.db;
 
+import android.content.Context;
+
 public class DB implements Database {
 
+	private Context context;
 	private Lists lists;
 	private Tasks tasks;
 
-	public DB() {
+	public DB(Context context) {
 		lists = new Lists();
 		tasks = new Tasks();
+		this.context = context;
 	}
 
 	@Override
