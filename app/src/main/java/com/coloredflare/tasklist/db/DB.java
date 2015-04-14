@@ -19,17 +19,20 @@ public class DB implements Database {
 	public DB(Context context) {
 		tasks = new Tasks();
 		this.context = context;
-		openFile();
+		openOrCreateFile();
 	}
 
-	private void openFile() {
+	private void openOrCreateFile() {
 		File path = context.getFilesDir();
 		String filename = "database.txt";
 		database = new File(path, filename);
+
 		if (!database.exists()) {
 			try {
-				database.createNewFile();
-			} catch (IOException e) {
+			final boolean fileCreated = database.createNewFile();
+			if (!fileCreated)
+				throw new IOException();
+		} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
@@ -41,7 +44,9 @@ public class DB implements Database {
 		try {
 			reader = new BufferedReader(new FileReader(database));
 			try {
-				int numberOfLists = Integer.parseInt(reader.readLine());
+				int numberOfLists;
+				String numberOfListsString = reader.readLine();
+				numberOfLists = numberOfListsString == null ? 0 : Integer.parseInt(numberOfListsString);
 				ArrayList<List> lists = new ArrayList<>();
 				for (int i = 0; i < numberOfLists; i++){
 					String listName = reader.readLine();
