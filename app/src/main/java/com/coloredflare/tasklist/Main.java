@@ -19,11 +19,22 @@ public class Main extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
+        updateListView();
+
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        updateListView();
+    }
+
+    private void updateListView() {
         ListView listView = (ListView) findViewById(R.id.listView);
 
 
-		Database database = DatabaseFactory.getDatabase(this);
-		final Lists values = database.getLists();
+        Database database = DatabaseFactory.getDatabase(this);
+        final Lists values = database.getLists();
 
 
         ListAdapter adapter = new ListAdapter(this, R.layout.list_simple_textview, values);
@@ -42,7 +53,6 @@ public class Main extends ActionBarActivity {
         };
 
         listView.setOnItemClickListener(listener);
-
     }
 
 }
