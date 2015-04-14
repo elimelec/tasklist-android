@@ -1,8 +1,8 @@
 <resources>
 	<string name="app_name">TaskList</string>
-    <string name="title_activity_main">Main</string>
+    <string name="title_activity_main">PufuList</string>
 
-    <string name="hello_world">Hello world!</string>
+
     <string name="action_settings">Settings</string>
     <string name="title_activity_list">ListActivity</string>
 </resources>
