@@ -23,10 +23,11 @@ public class DB implements Database {
 	}
 
 	private void openOrCreateFile() {
-		File path = context.getFilesDir();
-		String filename = "database.txt";
-		database = new File(path, filename);
+		openFile();
+		createFileIfNecessary();
+	}
 
+	private void createFileIfNecessary() {
 		if (!database.exists()) {
 			try {
 			final boolean fileCreated = database.createNewFile();
@@ -38,32 +39,42 @@ public class DB implements Database {
 		}
 	}
 
+	private void openFile() {
+		File path = context.getFilesDir();
+		String filename = "database.txt";
+		database = new File(path, filename);
+	}
+
 	@Override
 	public Lists getLists() {
 		BufferedReader reader;
 		try {
 			reader = new BufferedReader(new FileReader(database));
-			try {
-				int numberOfLists;
-				String numberOfListsString = reader.readLine();
-				numberOfLists = numberOfListsString == null ? 0 : Integer.parseInt(numberOfListsString);
-				ArrayList<List> lists = new ArrayList<>();
-				for (int i = 0; i < numberOfLists; i++){
-					String listName = reader.readLine();
-					List list = new List(i, listName);
-					lists.add(list);
-				}
-				this.lists = new Lists(lists);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			readLists(reader);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 		return lists;
 	}
 
-    @Override
+	private void readLists(BufferedReader reader) {
+		try {
+			int numberOfLists;
+			String numberOfListsString = reader.readLine();
+			numberOfLists = numberOfListsString == null ? 0 : Integer.parseInt(numberOfListsString);
+			ArrayList<List> lists = new ArrayList<>();
+			for (int i = 0; i < numberOfLists; i++){
+				String listName = reader.readLine();
+				List list = new List(i, listName);
+				lists.add(list);
+			}
+			this.lists = new Lists(lists);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
     public List getList(int id) {
         return null;
     }
