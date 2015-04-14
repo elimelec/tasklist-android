@@ -2,6 +2,10 @@ package com.coloredflare.tasklist.db;
 
 import android.content.Context;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+
 public class DB implements Database {
 
 	private Context context;
@@ -12,6 +16,20 @@ public class DB implements Database {
 		lists = new Lists();
 		tasks = new Tasks();
 		this.context = context;
+		openFile();
+	}
+
+	private void openFile() {
+		File path = context.getFilesDir();
+		String filename = "database.txt";
+		File database = new File(path, filename);
+
+		FileOutputStream outputStream;
+		try {
+			outputStream = new FileOutputStream(database);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
