@@ -16,4 +16,10 @@ public class Lists {
     public int count() {
         return lists.size();
     }
+
+	public Lists add(List list) {
+		ArrayList<List> listsCopy = new ArrayList<>(this.lists);
+		listsCopy.add(list);
+		return new Lists(listsCopy);
+	}
 }

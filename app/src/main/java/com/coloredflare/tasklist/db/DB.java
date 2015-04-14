@@ -3,9 +3,11 @@ package com.coloredflare.tasklist.db;
 import android.content.Context;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -101,10 +103,34 @@ public class DB implements Database {
 
     @Override
     public void addList(List list) {
-
+		lists = lists.add(list);
+		writeLists();
     }
 
-    @Override
+	private void writeLists() {
+		database.delete();
+		createFileIfNecessary();
+
+		BufferedWriter writer;
+		try {
+			writer = new BufferedWriter(new FileWriter(database));
+
+			writer.append("" + lists.count());
+			writer.newLine();
+
+			for (int i = 0; i < lists.count(); i++) {
+				writer.append(lists.get(i).toString());
+				writer.newLine();
+			}
+
+			writer.flush();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
     public void addTask(Task task) {
 
     }
