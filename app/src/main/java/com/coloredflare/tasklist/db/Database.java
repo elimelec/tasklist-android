@@ -3,12 +3,12 @@ package com.coloredflare.tasklist.db;
 public interface Database {
 	Lists getLists();
     List getList(int id);
-	Tasks getTasks(List list);
+
 	Tasks getTasks(int listId);
     Task getTask(int id);
 
-    void deleteList(List list);
-    void deleteTask(Task task);
+    void deleteList(int listId);
+    void deleteTask(int taskId);
 
     void addList(List list);
     void addTask(Task task);

@@ -20,11 +20,6 @@ public class DB implements Database {
         return null;
     }
 
-    @Override
-	public Tasks getTasks(List list) {
-		return tasks;
-	}
-
 	@Override
 	public Tasks getTasks(int listId) {
 		return tasks;
@@ -36,12 +31,12 @@ public class DB implements Database {
     }
 
     @Override
-    public void deleteList(List list) {
+    public void deleteList(int listId) {
 
     }
 
     @Override
-    public void deleteTask(Task task) {
+    public void deleteTask(int taskId) {
 
     }
 
