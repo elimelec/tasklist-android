@@ -26,6 +26,13 @@ public class DB implements Database {
 		File path = context.getFilesDir();
 		String filename = "database.txt";
 		database = new File(path, filename);
+		if (!database.exists()) {
+			try {
+				database.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	@Override
