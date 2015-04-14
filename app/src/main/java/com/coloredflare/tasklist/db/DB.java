@@ -2,18 +2,21 @@ package com.coloredflare.tasklist.db;
 
 import android.content.Context;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class DB implements Database {
 
 	private Context context;
 	private Lists lists;
 	private Tasks tasks;
+	private File database;
 
 	public DB(Context context) {
-		lists = new Lists();
 		tasks = new Tasks();
 		this.context = context;
 		openFile();
@@ -22,18 +25,29 @@ public class DB implements Database {
 	private void openFile() {
 		File path = context.getFilesDir();
 		String filename = "database.txt";
-		File database = new File(path, filename);
-
-		FileOutputStream outputStream;
-		try {
-			outputStream = new FileOutputStream(database);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+		database = new File(path, filename);
 	}
 
 	@Override
 	public Lists getLists() {
+		BufferedReader reader;
+		try {
+			reader = new BufferedReader(new FileReader(database));
+			try {
+				int numberOfLists = Integer.parseInt(reader.readLine());
+				ArrayList<List> lists = new ArrayList<>();
+				for (int i = 0; i < numberOfLists; i++){
+					String listName = reader.readLine();
+					List list = new List(i, listName);
+					lists.add(list);
+				}
+				this.lists = new Lists(lists);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 		return lists;
 	}
 
