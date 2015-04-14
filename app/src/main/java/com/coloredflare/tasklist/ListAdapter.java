@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
@@ -14,9 +13,9 @@ import com.coloredflare.tasklist.db.Lists;
 
 public class ListAdapter extends BaseAdapter{
 
-    private Context context;
-    private int resource;
-    private Lists lists;
+    private final Context context;
+    private final int resource;
+    private final Lists lists;
 
     public ListAdapter(Context context, int resource, Lists lists) {
 //        super(context, resource);
@@ -50,7 +49,7 @@ public class ListAdapter extends BaseAdapter{
         else
             rootView = convertView;
 
-        TextView textView = (TextView) rootView.findViewById(R.id.textview);
+        TextView textView = (TextView) rootView.findViewById(R.id.textView);
         textView.setText(lists.get(position).toString());
 
         return rootView;

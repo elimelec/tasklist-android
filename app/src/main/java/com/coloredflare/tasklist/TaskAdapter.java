@@ -11,9 +11,9 @@ import com.coloredflare.tasklist.db.Tasks;
 
 public class TaskAdapter extends BaseAdapter {
 
-    private Context context;
-    private int resource;
-    private Tasks tasks;
+    private final Context context;
+    private final int resource;
+    private final Tasks tasks;
 
     public TaskAdapter(Context context, int resource, Tasks tasks) {
         this.context = context;
@@ -45,7 +45,7 @@ public class TaskAdapter extends BaseAdapter {
         else
             rootView = convertView;
 
-        TextView textView = (TextView) rootView.findViewById(R.id.textview);
+        TextView textView = (TextView) rootView.findViewById(R.id.textView);
         textView.setText(tasks.get(position).toString());
 
         return rootView;

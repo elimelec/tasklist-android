@@ -3,7 +3,7 @@ package com.coloredflare.tasklist.db;
 import java.util.ArrayList;
 
 public class Lists {
-    ArrayList<List> lists;
+    private final ArrayList<List> lists;
 
 	public Lists(ArrayList<List> lists) {
         this.lists = lists;

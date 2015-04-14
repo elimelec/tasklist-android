@@ -11,9 +11,9 @@ import java.util.ArrayList;
 
 public class DB implements Database {
 
-	private Context context;
+	private final Context context;
 	private Lists lists;
-	private Tasks tasks;
+	private final Tasks tasks;
 	private File database;
 
 	public DB(Context context) {
