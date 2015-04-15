@@ -114,6 +114,7 @@ public class DB implements Database {
 		DB.lists = lists;
 	}
 
+
 	@Override
     public List getList(int id) {
         return lists.get(id);
@@ -142,10 +143,10 @@ public class DB implements Database {
     @Override
     public void addList(List list) {
 		lists = lists.add(list);
-		writeLists();
+		writeDatabase();
     }
 
-	private void writeLists() {
+	private void writeDatabase() {
 		database.delete();
 		createFileIfNecessary();
 
@@ -157,8 +158,21 @@ public class DB implements Database {
 			writer.newLine();
 
 			for (int i = 0; i < lists.count(); i++) {
-				writer.append(lists.get(i).toString());
+                List list = lists.get(i);
+
+				writer.append(list.toString());
 				writer.newLine();
+
+                Tasks tasks = list.getTasks();
+                writer.append("" + tasks.count());
+                writer.newLine();
+
+                for (int j = 0; j < tasks.count(); j++) {
+                    Task task = tasks.get(j);
+                    writer.append(task.toString());
+                    writer.newLine();
+                }
+
 			}
 
 			writer.flush();
