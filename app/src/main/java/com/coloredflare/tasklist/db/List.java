@@ -3,10 +3,12 @@ package com.coloredflare.tasklist.db;
 public class List {
 	private final int id;
 	private final String name;
+	private final Tasks tasks;
 
-	public List(int id, String name) {
+	public List(int id, String name, Tasks tasks) {
 		this.id = id;
 		this.name = name;
+		this.tasks = tasks;
 	}
 
 	@Override
@@ -17,4 +19,8 @@ public class List {
     public int getId() {
         return id;
     }
+
+	public Tasks getTasks() {
+		return tasks;
+	}
 }

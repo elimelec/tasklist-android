@@ -1,15 +1,16 @@
 package com.coloredflare.tasklist.db;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class Tasks {
 	private final ArrayList<Task> tasks;
 
 	public Tasks() {
-		Task[] tasks = new Task[] { new Task(0,"Android"), new Task(1,"Mac"), new Task(2, "Windows")};
-		this.tasks = new ArrayList<>();
-		Collections.addAll(this.tasks, tasks);
+		tasks = new ArrayList<>();
+	}
+
+	public Tasks(ArrayList<Task> tasks) {
+		this.tasks = tasks;
 	}
 
 	public Task get(int index) {
@@ -18,5 +19,11 @@ public class Tasks {
 
 	public int count() {
 		return tasks.size();
+	}
+
+	public Tasks add(Task task) {
+		ArrayList<Task> tasksCopy = new ArrayList<>(this.tasks);
+		tasksCopy.add(task);
+		return new Tasks(tasksCopy);
 	}
 }

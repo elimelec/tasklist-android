@@ -9,19 +9,17 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class DB implements Database {
 
 	private final Context context;
 	static private Lists lists;
-	private final Tasks tasks;
 	private File database;
 
 	public DB(Context context) {
-		tasks = new Tasks();
 		this.context = context;
 		openOrCreateFile();
+		readDatabase();
 	}
 
 	private void openOrCreateFile() {
@@ -49,41 +47,81 @@ public class DB implements Database {
 
 	@Override
 	public Lists getLists() {
-		BufferedReader reader;
-		try {
-			reader = new BufferedReader(new FileReader(database));
-			readLists(reader);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
 		return lists;
 	}
 
-	private void readLists(BufferedReader reader) {
+
+	private void readDatabase() {
+		BufferedReader bufferedReader;
+		FileReader fileReader = null;
 		try {
-			int numberOfLists;
-			String numberOfListsString = reader.readLine();
-			numberOfLists = numberOfListsString == null ? 0 : Integer.parseInt(numberOfListsString);
-			ArrayList<List> lists = new ArrayList<>();
-			for (int i = 0; i < numberOfLists; i++){
-				String listName = reader.readLine();
-				List list = new List(i, listName);
-				lists.add(list);
-			}
-			this.lists = new Lists(lists);
-		} catch (IOException e) {
+			fileReader = new FileReader(database);
+		} catch (FileNotFoundException e) {
 			e.printStackTrace();
+			throw new RuntimeException("exception!!!!!");
 		}
+		bufferedReader = new BufferedReader(fileReader);
+
+
+		int numberOfLists;
+		try {
+			numberOfLists = Integer.parseInt(bufferedReader.readLine());
+		} catch (IOException | NumberFormatException e) {
+			e.printStackTrace();
+			throw new RuntimeException("exception!!!!!");
+		}
+
+		Lists lists = new Lists();
+
+		for (int i = 0; i < numberOfLists; i++) {
+			String listName;
+			try {
+				listName = bufferedReader.readLine();
+			} catch (IOException e) {
+				e.printStackTrace();
+				throw new RuntimeException("exception!!!!!");
+			}
+
+
+			int numberOfTasks;
+			try {
+				numberOfTasks = Integer.parseInt(bufferedReader.readLine());
+			} catch (IOException e) {
+				e.printStackTrace();
+				throw new RuntimeException("exception!!!!!");
+			}
+
+			Tasks tasks = new Tasks();
+			for (int j = 0; j < numberOfTasks; j++) {
+
+				String taskName = null;
+				try {
+					taskName = bufferedReader.readLine();
+				} catch (IOException e) {
+					e.printStackTrace();
+					throw new RuntimeException("exception!!!!!");
+				}
+
+
+				Task task = new Task(j, taskName);
+				tasks = tasks.add(task);
+			}
+
+			List list = new List(i, listName, tasks);
+			lists = lists.add(list);
+		}
+
+		DB.lists = lists;
 	}
 
 	@Override
     public List getList(int id) {
-        return null;
+        return lists.get(id);
     }
 
 	@Override
 	public Tasks getTasks(int listId) {
-		return tasks;
+		return lists.get(listId).getTasks();
 	}
 
 	@Override
