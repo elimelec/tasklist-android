@@ -11,7 +11,7 @@ public interface Database {
     void deleteTask(int taskId);
 
     void addList(List list);
-    void addTask(Task task);
+    void addTask(Task task, int listId);
 
     void updateList(List list);
     void updateTask(Task task);

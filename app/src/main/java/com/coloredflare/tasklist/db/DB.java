@@ -146,6 +146,14 @@ public class DB implements Database {
 		writeDatabase();
     }
 
+	@Override
+	public void addTask(Task task, int listId) {
+		List list = lists.get(listId);
+		list = new List(list.getId(), list.toString(), list.getTasks().add(task));
+		lists = lists.replace(list);
+		writeDatabase();
+	}
+
 	private void writeDatabase() {
 		database.delete();
 		createFileIfNecessary();
@@ -158,20 +166,20 @@ public class DB implements Database {
 			writer.newLine();
 
 			for (int i = 0; i < lists.count(); i++) {
-                List list = lists.get(i);
+				List list = lists.get(i);
 
 				writer.append(list.toString());
 				writer.newLine();
 
-                Tasks tasks = list.getTasks();
-                writer.append("" + tasks.count());
-                writer.newLine();
+				Tasks tasks = list.getTasks();
+				writer.append("" + tasks.count());
+				writer.newLine();
 
-                for (int j = 0; j < tasks.count(); j++) {
-                    Task task = tasks.get(j);
-                    writer.append(task.toString());
-                    writer.newLine();
-                }
+				for (int j = 0; j < tasks.count(); j++) {
+					Task task = tasks.get(j);
+					writer.append(task.toString());
+					writer.newLine();
+				}
 
 			}
 
@@ -181,11 +189,6 @@ public class DB implements Database {
 			e.printStackTrace();
 		}
 	}
-
-	@Override
-    public void addTask(Task task) {
-
-    }
 
     @Override
     public void updateList(List list) {

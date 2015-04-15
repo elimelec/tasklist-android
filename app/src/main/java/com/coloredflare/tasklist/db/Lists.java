@@ -26,4 +26,12 @@ public class Lists {
 		listsCopy.add(list);
 		return new Lists(listsCopy);
 	}
+
+	public Lists replace(List list) {
+		ArrayList<List> listsCopy = new ArrayList<>(this.lists);
+		listsCopy.remove(list.getId());
+		listsCopy.add(list);
+		return new Lists(listsCopy);
+	}
+
 }
