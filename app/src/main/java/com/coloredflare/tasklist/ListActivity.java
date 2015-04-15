@@ -18,7 +18,7 @@ public class ListActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
-        int listId = getIntent().getExtras().getInt("listId");
+		int listId =(int) getIntent().getLongExtra("listId", 0);
 
         ListView listView = (ListView) findViewById(R.id.listView);
 
