@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Tasks {
 	private final ArrayList<Task> tasks;
 
-	public Tasks() {
+    public Tasks() {
 		tasks = new ArrayList<>();
 	}
 
@@ -26,4 +26,5 @@ public class Tasks {
 		tasksCopy.add(task);
 		return new Tasks(tasksCopy);
 	}
+
 }

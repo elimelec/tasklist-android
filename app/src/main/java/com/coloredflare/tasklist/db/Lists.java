@@ -30,7 +30,7 @@ public class Lists {
 	public Lists replace(List list) {
 		ArrayList<List> listsCopy = new ArrayList<>(this.lists);
 		listsCopy.remove(list.getId());
-		listsCopy.add(list);
+		listsCopy.add(list.getId(), list);
 		return new Lists(listsCopy);
 	}
 
