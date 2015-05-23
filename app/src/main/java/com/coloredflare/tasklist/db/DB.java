@@ -132,12 +132,15 @@ public class DB implements Database {
 
     @Override
     public void deleteList(int listId) {
+        lists.remove(listId);
+        writeDatabase();
 
     }
 
     @Override
-    public void deleteTask(int taskId) {
-
+    public void deleteTask(int listId, int taskId) {
+        lists.get(listId).getTasks().remove(taskId);
+        writeDatabase();
     }
 
     @Override
@@ -191,8 +194,10 @@ public class DB implements Database {
 	}
 
     @Override
-    public void updateList(List list) {
-
+    public void updateList(int listId, String listName) {
+        List list = lists.get(listId);
+        lists = lists.replace(new List(listId, listName, list.getTasks()));
+        writeDatabase();
     }
 
     @Override

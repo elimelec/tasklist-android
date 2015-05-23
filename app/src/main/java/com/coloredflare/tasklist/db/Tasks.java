@@ -27,4 +27,8 @@ public class Tasks {
 		return new Tasks(tasksCopy);
 	}
 
+    public Tasks remove(int id) {
+        tasks.remove(id);
+        return this;
+    }
 }

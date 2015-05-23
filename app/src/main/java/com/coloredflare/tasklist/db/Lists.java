@@ -34,4 +34,9 @@ public class Lists {
 		return new Lists(listsCopy);
 	}
 
+    public Lists remove(int id) {
+        lists.remove(id);
+        return this;
+    }
+
 }

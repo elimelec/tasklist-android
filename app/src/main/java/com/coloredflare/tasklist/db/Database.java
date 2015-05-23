@@ -8,11 +8,11 @@ public interface Database {
     Task getTask(int id);
 
     void deleteList(int listId);
-    void deleteTask(int taskId);
+    void deleteTask(int listId, int taskId);
 
     void addList(List list);
     void addTask(Task task, int listId);
 
-    void updateList(List list);
+    void updateList(int listId, String listName);
     void updateTask(Task task);
 }

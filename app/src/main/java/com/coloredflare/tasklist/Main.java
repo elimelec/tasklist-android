@@ -12,6 +12,7 @@ import android.widget.ListView;
 import com.coloredflare.tasklist.db.Database;
 import com.coloredflare.tasklist.db.DatabaseFactory;
 import com.coloredflare.tasklist.db.Lists;
+import com.coloredflare.tasklist.db.UpdateListActivity;
 
 
 public class Main extends ActionBarActivity {
@@ -60,6 +61,7 @@ public class Main extends ActionBarActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 final long itemId = id;
 
+                //checks if double tapped
                 if (!tapped) {
                     new Handler().postDelayed(new Runnable() {
                         @Override
@@ -77,7 +79,9 @@ public class Main extends ActionBarActivity {
                     tapped = true;
                 }
                 else {
-                    Log.d("asd", "update list");
+                    Intent intent = new Intent(Main.this, UpdateListActivity.class);
+                    intent.putExtra("listId", itemId);
+                    startActivity(intent);
                     tapped = false;
                 }
 

@@ -36,6 +36,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.coloredflare.tasklist.ListActivity" />
         </activity>
+        <activity
+            android:name=".db.UpdateListActivity"
+            android:label="@string/title_activity_update_list" >
+        </activity>
     </application>
 
 </manifest>
