@@ -37,6 +37,7 @@ public class DB implements Database {
 				e.printStackTrace();
 			}
 		}
+
 	}
 
 	private void openFile() {
@@ -66,7 +67,9 @@ public class DB implements Database {
 		int numberOfLists;
 		try {
 			numberOfLists = Integer.parseInt(bufferedReader.readLine());
-		} catch (IOException | NumberFormatException e) {
+		} catch (IOException e) {
+			numberOfLists = 0;
+		} catch (NumberFormatException e) {
 			e.printStackTrace();
 			throw new RuntimeException("exception!!!!!");
 		}
