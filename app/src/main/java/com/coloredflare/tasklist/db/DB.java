@@ -59,7 +59,7 @@ public class DB implements Database {
 
 	private void readDatabase() {
 		BufferedReader bufferedReader;
-		FileReader fileReader = null;
+		FileReader fileReader;
 		try {
 			fileReader = new FileReader(database);
 		} catch (FileNotFoundException e) {
@@ -102,7 +102,7 @@ public class DB implements Database {
 			Tasks tasks = new Tasks();
 			for (int j = 0; j < numberOfTasks; j++) {
 
-				String taskName = null;
+				String taskName;
 				boolean checked;
 				try {
 					taskName = bufferedReader.readLine();
