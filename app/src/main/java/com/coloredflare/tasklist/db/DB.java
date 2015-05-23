@@ -2,6 +2,11 @@ package com.coloredflare.tasklist.db;
 
 import android.content.Context;
 
+import com.coloredflare.tasklist.datatypes.List;
+import com.coloredflare.tasklist.datatypes.Lists;
+import com.coloredflare.tasklist.datatypes.Task;
+import com.coloredflare.tasklist.datatypes.Tasks;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;

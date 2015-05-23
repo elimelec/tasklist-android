@@ -8,7 +8,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".Main"
+            android:name=".activities.Main"
             android:label="@string/title_activity_main" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,31 +17,31 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ListActivity"
+            android:name=".activities.ListActivity"
             android:label="@string/title_activity_list" >
         </activity>
         <activity
-            android:name=".AddListActivity"
+            android:name=".activities.AddListActivity"
             android:label="@string/title_activity_add_list"
-            android:parentActivityName=".Main" >
+            android:parentActivityName=".activities.Main" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.coloredflare.tasklist.Main" />
+                android:value=".activities.Main" />
         </activity>
         <activity
-            android:name=".AddTaskActivity"
+            android:name=".activities.AddTaskActivity"
             android:label="@string/title_activity_add_task"
-            android:parentActivityName=".ListActivity" >
+            android:parentActivityName=".activities.ListActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.coloredflare.tasklist.ListActivity" />
+                android:value=".activities.ListActivity" />
         </activity>
         <activity
-            android:name=".UpdateListActivity"
+            android:name=".activities.UpdateListActivity"
             android:label="@string/title_activity_update_list" >
         </activity>
         <activity
-            android:name=".UpdateTaskActivity"
+            android:name=".activities.UpdateTaskActivity"
             android:label="@string/title_activity_update_task" >
         </activity>
     </application>

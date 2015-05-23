@@ -1,4 +1,4 @@
-package com.coloredflare.tasklist.db;
+package com.coloredflare.tasklist.datatypes;
 
 public class Task {
 	private final int id;

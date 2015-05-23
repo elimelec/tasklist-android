@@ -1,4 +1,4 @@
-package com.coloredflare.tasklist;
+package com.coloredflare.tasklist.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,51 +8,52 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.coloredflare.tasklist.R;
+import com.coloredflare.tasklist.adapters.TaskAdapter;
 import com.coloredflare.tasklist.db.Database;
 import com.coloredflare.tasklist.db.DatabaseFactory;
-import com.coloredflare.tasklist.db.Lists;
+import com.coloredflare.tasklist.datatypes.Tasks;
 
 
-public class Main extends ActionBarActivity {
+public class ListActivity extends ActionBarActivity {
 
-    private Lists lists;
+    private Tasks tasks;
+    private int listId;
+
     private boolean tapped = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        setContentView(R.layout.activity_list);
 
-        updateListView();
-
+        updateTaskView();
     }
 
-    public void addList(View view){
-        Intent intent = new Intent(Main.this, AddListActivity.class);
-        intent.putExtra("newListId", lists.count());
+    public void addTask(View view){
+        Intent intent = new Intent(ListActivity.this, AddTaskActivity.class);
+        intent.putExtra("newTaskId", tasks.count());
+        intent.putExtra("newListId", listId);
         startActivity(intent);
 
     }
 
+    private void updateTaskView() {
+        listId = (int) getIntent().getLongExtra("listId", -1);
+        if (listId < 0){
+            throw new RuntimeException("list id is negative");
+        }
 
-    @Override
-    protected void onResume(){
-        super.onResume();
-        updateListView();
-    }
-
-    private void updateListView() {
         ListView listView = (ListView) findViewById(R.id.listView);
 
 
         final Database database = DatabaseFactory.getDatabase(this);
-        lists = database.getLists();
+        tasks = database.getTasks(listId);
 
 
-        ListAdapter adapter = new ListAdapter(this, R.layout.list_simple_textview, lists);
+        TaskAdapter adapter = new TaskAdapter(this, R.layout.list_simple_textview, tasks);
 
         listView.setAdapter(adapter);
-
 
         AdapterView.OnItemClickListener listener = new AdapterView.OnItemClickListener() {
             @Override
@@ -65,11 +66,9 @@ public class Main extends ActionBarActivity {
                         @Override
                         public void run() {
                             if (tapped) {
-                                // show task
-                                Intent intent = new Intent(Main.this, ListActivity.class);
-                                intent.putExtra("listId", itemId);
-                                startActivity(intent);
-                                tapped = false;
+								database.checkTask(listId, (int) itemId);
+								updateTaskView();
+								tapped = false;
                             }
                         }
                     }, 300);
@@ -77,8 +76,9 @@ public class Main extends ActionBarActivity {
                     tapped = true;
                 }
                 else {
-                    Intent intent = new Intent(Main.this, UpdateListActivity.class);
-                    intent.putExtra("listId", itemId);
+                    Intent intent = new Intent(ListActivity.this, UpdateTaskActivity.class);
+                    intent.putExtra("taskId", itemId);
+                    intent.putExtra("listId", listId);
                     startActivity(intent);
                     tapped = false;
                 }
@@ -89,17 +89,25 @@ public class Main extends ActionBarActivity {
 
         listView.setOnItemClickListener(listener);
 
+
         AdapterView.OnItemLongClickListener longClickListener = new AdapterView.OnItemLongClickListener() {
 
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                database.deleteList((int)id);
-                updateListView();
+                database.deleteTask(listId, (int)id);
+                updateTaskView();
                 return true;
             }
         };
 
         listView.setOnItemLongClickListener(longClickListener);
+
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        updateTaskView();
     }
 
 }

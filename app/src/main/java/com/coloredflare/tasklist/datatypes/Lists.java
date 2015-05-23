@@ -1,4 +1,4 @@
-package com.coloredflare.tasklist.db;
+package com.coloredflare.tasklist.datatypes;
 
 import java.util.ArrayList;
 

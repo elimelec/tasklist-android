@@ -1,4 +1,4 @@
-package com.coloredflare.tasklist;
+package com.coloredflare.tasklist.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,37 +7,34 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.coloredflare.tasklist.db.List;
-import com.coloredflare.tasklist.db.Lists;
+import com.coloredflare.tasklist.R;
+import com.coloredflare.tasklist.datatypes.Tasks;
 
-
-public class ListAdapter extends BaseAdapter{
+public class TaskAdapter extends BaseAdapter {
 
     private final Context context;
     private final int resource;
-    private final Lists lists;
+    private final Tasks tasks;
 
-    public ListAdapter(Context context, int resource, Lists lists) {
-//        super(context, resource);
+    public TaskAdapter(Context context, int resource, Tasks tasks) {
         this.context = context;
         this.resource = resource;
-        this.lists = lists;
+        this.tasks = tasks;
 
     }
-
     @Override
     public int getCount() {
-        return lists.count();
+        return tasks.count();
     }
 
     @Override
-    public List getItem(int position) {
-        return lists.get(position);
+    public Object getItem(int position) {
+        return tasks.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        return lists.get(position).getId();
+        return tasks.get(position).getId();
     }
 
     @Override
@@ -50,7 +47,8 @@ public class ListAdapter extends BaseAdapter{
             rootView = convertView;
 
         TextView textView = (TextView) rootView.findViewById(R.id.textView);
-        textView.setText(lists.get(position).toString());
+        boolean checked = tasks.get(position).isChecked();
+        textView.setText((checked ? "[x] " : "[ ] ") + tasks.get(position).toString());
 
         return rootView;
     }

@@ -1,5 +1,10 @@
 package com.coloredflare.tasklist.db;
 
+import com.coloredflare.tasklist.datatypes.List;
+import com.coloredflare.tasklist.datatypes.Lists;
+import com.coloredflare.tasklist.datatypes.Task;
+import com.coloredflare.tasklist.datatypes.Tasks;
+
 public interface Database {
 	Lists getLists();
     List getList(int id);

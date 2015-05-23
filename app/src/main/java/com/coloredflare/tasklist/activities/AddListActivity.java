@@ -1,14 +1,15 @@
-package com.coloredflare.tasklist;
+package com.coloredflare.tasklist.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.EditText;
 
+import com.coloredflare.tasklist.R;
 import com.coloredflare.tasklist.db.Database;
 import com.coloredflare.tasklist.db.DatabaseFactory;
-import com.coloredflare.tasklist.db.List;
-import com.coloredflare.tasklist.db.Tasks;
+import com.coloredflare.tasklist.datatypes.List;
+import com.coloredflare.tasklist.datatypes.Tasks;
 
 
 public class AddListActivity extends ActionBarActivity {
