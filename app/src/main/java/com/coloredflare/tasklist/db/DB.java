@@ -217,4 +217,14 @@ public class DB implements Database {
 
         writeDatabase();
     }
+
+	@Override
+	public void checkTask(int listId, int taskId) {
+		Task task = lists.get(listId).getTasks().get(taskId);
+		task =  new Task(task.getId(), task.toString(), !task.isChecked());
+		List list = lists.get(listId);
+		list = new List(list.getId(), list.toString(), list.getTasks().replace(task));
+		lists = lists.replace(list);
+		writeDatabase();
+	}
 }

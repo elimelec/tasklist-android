@@ -46,7 +46,8 @@ public class TaskAdapter extends BaseAdapter {
             rootView = convertView;
 
         TextView textView = (TextView) rootView.findViewById(R.id.textView);
-        textView.setText(tasks.get(position).toString());
+        boolean checked = tasks.get(position).isChecked();
+        textView.setText((checked ? "[x] " : "[ ] ") + tasks.get(position).toString());
 
         return rootView;
     }

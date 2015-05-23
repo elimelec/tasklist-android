@@ -64,8 +64,9 @@ public class ListActivity extends ActionBarActivity {
                         @Override
                         public void run() {
                             if (tapped) {
-                                // show task
-                               tapped = false;
+								database.checkTask(listId, (int) itemId);
+								updateTaskView();
+								tapped = false;
                             }
                         }
                     }, 300);

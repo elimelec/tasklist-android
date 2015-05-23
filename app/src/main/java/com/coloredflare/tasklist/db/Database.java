@@ -15,4 +15,5 @@ public interface Database {
 
     void updateList(int listId, String listName);
     void updateTask(int listId, int taskId, String taskName);
+    void checkTask(int listId, int taskId);
 }
