@@ -14,5 +14,5 @@ public interface Database {
     void addTask(Task task, int listId);
 
     void updateList(int listId, String listName);
-    void updateTask(int listId, int taskId, String taskName, boolean checked);
+    void updateTask(int listId, int taskId, String taskName);
 }

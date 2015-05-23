@@ -9,8 +9,6 @@ import com.coloredflare.tasklist.db.Database;
 import com.coloredflare.tasklist.db.DatabaseFactory;
 import com.coloredflare.tasklist.db.Task;
 
-import junit.framework.Assert;
-
 public class AddTaskActivity extends ActionBarActivity {
 
     private int id;
@@ -40,7 +38,7 @@ public class AddTaskActivity extends ActionBarActivity {
         EditText editText = (EditText) findViewById(R.id.new_task_name);
         String taskName = editText.getText().toString();
 
-        Task task = new Task(id, taskName);
+        Task task = new Task(id, taskName, false);
         Database database = DatabaseFactory.getDatabase(this);
 
         database.addTask(task, listId);

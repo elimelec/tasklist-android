@@ -95,15 +95,17 @@ public class DB implements Database {
 			for (int j = 0; j < numberOfTasks; j++) {
 
 				String taskName = null;
+				boolean checked;
 				try {
 					taskName = bufferedReader.readLine();
+					checked = Boolean.parseBoolean(bufferedReader.readLine());
 				} catch (IOException e) {
 					e.printStackTrace();
 					throw new RuntimeException("exception!!!!!");
 				}
 
 
-				Task task = new Task(j, taskName);
+				Task task = new Task(j, taskName, checked);
 				tasks = tasks.add(task);
 			}
 
@@ -182,6 +184,8 @@ public class DB implements Database {
 					Task task = tasks.get(j);
 					writer.append(task.toString());
 					writer.newLine();
+					writer.append("" + task.isChecked());
+					writer.newLine();
 				}
 
 			}
@@ -201,11 +205,14 @@ public class DB implements Database {
     }
 
     @Override
-    public void updateTask(int listId, int taskId, String taskName, boolean checked) {
+    public void updateTask(int listId, int taskId, String taskName) {
 
         List list = lists.get(listId);
-        Task task =  new Task(taskId, taskName);
-        list = new List(list.getId(), list.toString(), list.getTasks().replace(task));
+
+		Task task = lists.get(listId).getTasks().get(taskId);
+		task =  new Task(task.getId(), taskName, task.isChecked());
+
+		list = new List(list.getId(), list.toString(), list.getTasks().replace(task));
         lists = lists.replace(list);
 
         writeDatabase();
