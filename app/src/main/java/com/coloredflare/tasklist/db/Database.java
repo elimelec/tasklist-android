@@ -7,10 +7,8 @@ import com.coloredflare.tasklist.datatypes.Tasks;
 
 public interface Database {
 	Lists getLists();
-    List getList(int id);
 
-	Tasks getTasks(int listId);
-    Task getTask(int id);
+    Tasks getTasks(int listId);
 
     void deleteList(int listId);
     void deleteTask(int listId, int taskId);

@@ -126,21 +126,11 @@ public class DB implements Database {
 
 
 	@Override
-    public List getList(int id) {
-        return lists.get(id);
-    }
-
-	@Override
 	public Tasks getTasks(int listId) {
 		return lists.get(listId).getTasks();
 	}
 
 	@Override
-    public Task getTask(int id) {
-        return null;
-    }
-
-    @Override
     public void deleteList(int listId) {
         lists.remove(listId);
         writeDatabase();
