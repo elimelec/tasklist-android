@@ -1,4 +1,4 @@
-package com.coloredflare.tasklist.db;
+package com.coloredflare.tasklist;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.coloredflare.tasklist.R;
+import com.coloredflare.tasklist.db.Database;
+import com.coloredflare.tasklist.db.DatabaseFactory;
 
 public class UpdateListActivity extends ActionBarActivity {
 

@@ -2,6 +2,7 @@ package com.coloredflare.tasklist;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,6 +17,8 @@ public class ListActivity extends ActionBarActivity {
 
     private Tasks tasks;
     private int listId;
+
+    private boolean tapped = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +56,29 @@ public class ListActivity extends ActionBarActivity {
         AdapterView.OnItemClickListener listener = new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                final long itemId = id;
+
+                //checks if double tapped
+                if (!tapped) {
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (tapped) {
+                                // show task
+                               tapped = false;
+                            }
+                        }
+                    }, 300);
+
+                    tapped = true;
+                }
+                else {
+                    Intent intent = new Intent(ListActivity.this, UpdateTaskActivity.class);
+                    intent.putExtra("taskId", itemId);
+                    intent.putExtra("listId", listId);
+                    startActivity(intent);
+                    tapped = false;
+                }
 
 
             }

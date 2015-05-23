@@ -201,7 +201,13 @@ public class DB implements Database {
     }
 
     @Override
-    public void updateTask(Task task) {
+    public void updateTask(int listId, int taskId, String taskName, boolean checked) {
 
+        List list = lists.get(listId);
+        Task task =  new Task(taskId, taskName);
+        list = new List(list.getId(), list.toString(), list.getTasks().replace(task));
+        lists = lists.replace(list);
+
+        writeDatabase();
     }
 }

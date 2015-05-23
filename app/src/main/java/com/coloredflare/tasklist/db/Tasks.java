@@ -27,6 +27,14 @@ public class Tasks {
 		return new Tasks(tasksCopy);
 	}
 
+
+    public Tasks replace(Task task) {
+        ArrayList<Task> tasksCopy = new ArrayList<>(this.tasks);
+        tasksCopy.remove(task.getId());
+        tasksCopy.add(task.getId(), task);
+        return new Tasks(tasksCopy);
+    }
+
     public Tasks remove(int id) {
         tasks.remove(id);
         return this;

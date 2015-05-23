@@ -37,8 +37,12 @@
                 android:value="com.coloredflare.tasklist.ListActivity" />
         </activity>
         <activity
-            android:name=".db.UpdateListActivity"
+            android:name=".UpdateListActivity"
             android:label="@string/title_activity_update_list" >
+        </activity>
+        <activity
+            android:name=".UpdateTaskActivity"
+            android:label="@string/title_activity_update_task" >
         </activity>
     </application>
 
