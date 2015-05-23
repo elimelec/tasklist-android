@@ -42,7 +42,7 @@ public class ListActivity extends ActionBarActivity {
         ListView listView = (ListView) findViewById(R.id.listView);
 
 
-        Database database = DatabaseFactory.getDatabase(this);
+        final Database database = DatabaseFactory.getDatabase(this);
         tasks = database.getTasks(listId);
 
 
@@ -59,6 +59,20 @@ public class ListActivity extends ActionBarActivity {
         };
 
         listView.setOnItemClickListener(listener);
+
+
+        AdapterView.OnItemLongClickListener longClickListener = new AdapterView.OnItemLongClickListener() {
+
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                database.deleteTask(listId, (int)id);
+                updateTaskView();
+                return true;
+            }
+        };
+
+        listView.setOnItemLongClickListener(longClickListener);
+
     }
 
     @Override

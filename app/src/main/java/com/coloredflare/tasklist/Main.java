@@ -32,6 +32,7 @@ public class Main extends ActionBarActivity {
 
     }
 
+
     @Override
     protected void onResume(){
         super.onResume();
@@ -42,7 +43,7 @@ public class Main extends ActionBarActivity {
         ListView listView = (ListView) findViewById(R.id.listView);
 
 
-        Database database = DatabaseFactory.getDatabase(this);
+        final Database database = DatabaseFactory.getDatabase(this);
         lists = database.getLists();
 
 
@@ -62,6 +63,18 @@ public class Main extends ActionBarActivity {
         };
 
         listView.setOnItemClickListener(listener);
+
+        AdapterView.OnItemLongClickListener longClickListener = new AdapterView.OnItemLongClickListener() {
+
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                database.deleteList((int)id);
+                updateListView();
+                return true;
+            }
+        };
+
+        listView.setOnItemLongClickListener(longClickListener);
     }
 
 }
