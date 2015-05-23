@@ -2,7 +2,9 @@ package com.coloredflare.tasklist;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -15,6 +17,7 @@ import com.coloredflare.tasklist.db.Lists;
 public class Main extends ActionBarActivity {
 
     private Lists lists;
+    private boolean tapped = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,13 +54,33 @@ public class Main extends ActionBarActivity {
 
         listView.setAdapter(adapter);
 
+
         AdapterView.OnItemClickListener listener = new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                final long itemId = id;
 
-                Intent intent = new Intent(Main.this, ListActivity.class);
-                intent.putExtra("listId", id);
-                startActivity(intent);
+                if (!tapped) {
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (tapped) {
+                                // show task
+                                Intent intent = new Intent(Main.this, ListActivity.class);
+                                intent.putExtra("listId", itemId);
+                                startActivity(intent);
+                                tapped = false;
+                            }
+                        }
+                    }, 300);
+
+                    tapped = true;
+                }
+                else {
+                    Log.d("asd", "update list");
+                    tapped = false;
+                }
+
 
             }
         };
