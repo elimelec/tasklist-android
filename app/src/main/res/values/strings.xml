@@ -12,4 +12,5 @@
     <string name="title_activity_update_list">UpdateListActivity</string>
     <string name="title_activity_update_task">UpdateTaskActivity</string>
 	<string name="title_activity_items">Items</string>
+    <string name="test_items">[{"id":"2","hash":"104c75265f861106b6ea5a9a58bf13b8","name":"Laptop","type":"task","parent":"0","user_id":"1","checked":"0"},{"id":"47","hash":"7215ebe422a0acdb90bf9d4465b0aef6","name":"Anime","type":"group","parent":"0","user_id":"1"},{"id":"86","hash":"aafb68a5c81e16c29c1ff804875fa4a3","name":"Shopping List","type":"group","parent":"0","user_id":"1"}]</string>
 </resources>
