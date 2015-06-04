@@ -22,15 +22,15 @@ import java.net.URL;
 
 public class ItemsActivity extends ActionBarActivity {
 
-	private String token;
+	private String base_url;
 	private Items items = new Items();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		token = getToken();
-		Log.d(token, token);
-		readItems(0);
+		base_url = getUrl();
+		Log.d(base_url, base_url);
+		readNewThread(base_url);
 		setContentView(R.layout.items);
 	}
 
@@ -61,19 +61,19 @@ public class ItemsActivity extends ActionBarActivity {
 		listView.setOnItemLongClickListener(longClickListener);
 	}
 
-	private void readItems(final int parent) {
+	private void readNewThread(final String url) {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
 				String s;
-				s = read(parent);
+				s = read(url);
 				doneRead(s);
 			}
 		}).start();
 	}
 
-	private String getToken() {
-		return getIntent().getStringExtra("token");
+	private String getUrl() {
+		return getIntent().getStringExtra("items_url");
 	}
 
 	private void doneRead(String itemsJSON) {
@@ -99,8 +99,8 @@ public class ItemsActivity extends ActionBarActivity {
 
 	}
 
-	private String read(int parent) {
-		String itemsUrl = "http://10.0.3.2/api/items/" + parent + "/" + token;
+	private String read(String url) {
+		String itemsUrl = "http://10.0.3.2/api" + url;
 		String inputLine = "";
 
 		try {

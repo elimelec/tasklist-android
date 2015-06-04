@@ -59,12 +59,12 @@ public class LoginActivity extends ActionBarActivity {
 		}).start();
 	}
 
-	private void startActivity(String token) {
-		if (token == null)
+	private void startActivity(String itemsUrl) {
+		if (itemsUrl == null)
 			return;
 
 		Intent items = new Intent(LoginActivity.this, ItemsActivity.class);
-		items.putExtra("token", token);
+		items.putExtra("items_url", itemsUrl);
 		startActivity(items);
 	}
 
