@@ -20,13 +20,11 @@ public class Main extends ActionBarActivity {
 		String username = getUsername();
 		String password = getPassword();
 
-		getLoginToken(username, password);
-		//Intent intent = new Intent(Main.this, AddListActivity.class);
-		//startActivity(intent);
+		login(username, password);
 	}
 
-	private String getLoginToken(String username, String password) {
-		return "0da4cf2ddc459935cbbe5cc715848432";
+	private void login(String username, String password) {
+		String token = "0da4cf2ddc459935cbbe5cc715848432";
 	}
 
 	private String getPassword() {
