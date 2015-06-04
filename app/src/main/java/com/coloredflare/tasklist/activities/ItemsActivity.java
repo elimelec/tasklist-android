@@ -32,7 +32,7 @@ public class ItemsActivity extends ActionBarActivity {
 
 	private void itemsUpdated() {
 		for(Item item : items.items) {
-			Log.d(item.name, item.name);
+			Log.d(item.name, item.action);
 		}
 	}
 
