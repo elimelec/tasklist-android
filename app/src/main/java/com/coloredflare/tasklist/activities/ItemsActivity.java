@@ -59,6 +59,10 @@ public class ItemsActivity extends ActionBarActivity {
 		listView.setOnItemLongClickListener(longClickListener);
 	}
 
+	public void backToRoot(View v) {
+		readNewThread(base_url);
+	}
+
 	private void readNewThread(final String url) {
 		new Thread(new Runnable() {
 			@Override
