@@ -9,7 +9,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".activities.Login"
+            android:name=".activities.LoginActivity"
             android:label="@string/title_activity_main" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,10 +24,10 @@
         <activity
             android:name=".activities.AddListActivity"
             android:label="@string/title_activity_add_list"
-            android:parentActivityName=".activities.Login" >
+            android:parentActivityName=".activities.LoginActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activities.Login" />
+                android:value=".activities.LoginActivity" />
         </activity>
         <activity
             android:name=".activities.AddTaskActivity"
@@ -46,7 +46,7 @@
             android:label="@string/title_activity_update_task" >
         </activity>
         <activity
-            android:name=".activities.Items"
+            android:name=".activities.ItemsActivity"
             android:label="@string/title_activity_items" >
         </activity>
     </application>

@@ -14,7 +14,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 
 
-public class Login extends ActionBarActivity {
+public class LoginActivity extends ActionBarActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +63,7 @@ public class Login extends ActionBarActivity {
 		if (token == null)
 			return;
 
-		Intent items = new Intent(Login.this, Items.class);
+		Intent items = new Intent(LoginActivity.this, ItemsActivity.class);
 		items.putExtra("token", token);
 		startActivity(items);
 	}
