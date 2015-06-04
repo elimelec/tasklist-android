@@ -1,5 +1,6 @@
 package com.coloredflare.tasklist.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
@@ -25,6 +26,10 @@ public class Login extends ActionBarActivity {
 
 	private void login(String username, String password) {
 		String token = "0da4cf2ddc459935cbbe5cc715848432";
+
+		Intent items = new Intent(Login.this, Items.class);
+		items.putExtra("token", token);
+		startActivity(items);
 	}
 
 	private String getPassword() {
