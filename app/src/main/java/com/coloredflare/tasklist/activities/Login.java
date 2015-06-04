@@ -8,7 +8,7 @@ import android.widget.TextView;
 import com.coloredflare.tasklist.R;
 
 
-public class Main extends ActionBarActivity {
+public class Login extends ActionBarActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

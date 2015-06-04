@@ -8,7 +8,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".activities.Main"
+            android:name=".activities.Login"
             android:label="@string/title_activity_main" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,10 +23,10 @@
         <activity
             android:name=".activities.AddListActivity"
             android:label="@string/title_activity_add_list"
-            android:parentActivityName=".activities.Main" >
+            android:parentActivityName=".activities.Login" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activities.Main" />
+                android:value=".activities.Login" />
         </activity>
         <activity
             android:name=".activities.AddTaskActivity"
@@ -43,6 +43,10 @@
         <activity
             android:name=".activities.UpdateTaskActivity"
             android:label="@string/title_activity_update_task" >
+        </activity>
+        <activity
+            android:name=".activities.Items"
+            android:label="@string/title_activity_items" >
         </activity>
     </application>
 
