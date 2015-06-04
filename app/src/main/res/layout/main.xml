@@ -13,6 +13,7 @@
         android:id="@+id/username"
         android:layout_marginTop="50dp"
 		android:hint="Username"
+        android:text="eli"
         />
 
     <EditText
@@ -22,6 +23,7 @@
         android:ems="10"
         android:id="@+id/password"
 		android:hint="Password"
+        android:text="eli"
         />
 
     <Button
