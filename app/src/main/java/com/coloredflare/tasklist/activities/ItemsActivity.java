@@ -43,16 +43,14 @@ public class ItemsActivity extends ActionBarActivity {
 		AdapterView.OnItemClickListener listener = new AdapterView.OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				/// perform action
-				Log.d("action: ", "" + items.items.get(position).action);
+				readNewThread(items.items.get(position).action);
 			}
 		};
 		AdapterView.OnItemLongClickListener longClickListener = new AdapterView.OnItemLongClickListener() {
 
 			@Override
 			public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-				/// perform delete
-				Log.d("delete: ", "" + items.items.get(position).delete);
+				readNewThread(items.items.get(position).delete);
 				return true;
 			}
 		};
@@ -100,7 +98,7 @@ public class ItemsActivity extends ActionBarActivity {
 	}
 
 	private String read(String url) {
-		String itemsUrl = "http://10.0.3.2/api" + url;
+		String itemsUrl = "http://10.0.3.2" + url;
 		String inputLine = "";
 
 		try {
