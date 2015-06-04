@@ -36,10 +36,4 @@ public class Main extends ActionBarActivity {
 		TextView username = (TextView) findViewById(R.id.username);
 		return username.getText().toString();
 	}
-
-	@Override
-	protected void onResume() {
-		super.onResume();
-	}
-
 }
