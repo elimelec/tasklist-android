@@ -45,7 +45,7 @@ public class Login extends ActionBarActivity {
 			public void run() {
 				final String token;
 				try {
-					token = read(username, password);
+					token = read(username, password).replace("\"", "");
 					runOnUiThread(new Runnable() {
 						@Override
 						public void run() {
