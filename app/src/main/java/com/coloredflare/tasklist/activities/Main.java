@@ -16,7 +16,7 @@ public class Main extends ActionBarActivity {
 		setContentView(R.layout.main);
 	}
 
-	public void addList(View view) {
+	public void login(View view) {
 		String username = getUsername();
 		String password = getPassword();
 
