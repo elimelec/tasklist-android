@@ -45,7 +45,11 @@ public class LoginActivity extends ActionBarActivity {
 			public void run() {
 				final String token;
 				try {
-					token = read(username, password).replace("\"", "");
+					String tempToken = read(username, password);
+					if (tempToken != null)
+						token = tempToken.replace("\"", "");
+					else
+						token = null;
 					runOnUiThread(new Runnable() {
 						@Override
 						public void run() {
