@@ -3,7 +3,6 @@ package com.coloredflare.tasklist.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -63,7 +62,7 @@ public class Login extends ActionBarActivity {
 	private void startActivity(String token) {
 		if (token == null)
 			return;
-		Log.d(token, token);
+
 		Intent items = new Intent(Login.this, Items.class);
 		items.putExtra("token", token);
 		startActivity(items);

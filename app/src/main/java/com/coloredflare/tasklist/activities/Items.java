@@ -25,6 +25,7 @@ public class Items extends ActionBarActivity {
 
 		token = getToken();
 
+		Log.d(token, token);
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -44,10 +45,6 @@ public class Items extends ActionBarActivity {
 
 	private String getToken() {
 		return getIntent().getStringExtra("token");
-	}
-
-	private String getItems() {
-		return getString(R.string.test_items);
 	}
 
 	private void doneRead() {
