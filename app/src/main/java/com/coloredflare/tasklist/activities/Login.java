@@ -3,10 +3,16 @@ package com.coloredflare.tasklist.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import com.coloredflare.tasklist.R;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
 
 
 public class Login extends ActionBarActivity {
@@ -21,15 +27,7 @@ public class Login extends ActionBarActivity {
 		String username = getUsername();
 		String password = getPassword();
 
-		login(username, password);
-	}
-
-	private void login(String username, String password) {
-		String token = "0da4cf2ddc459935cbbe5cc715848432";
-
-		Intent items = new Intent(Login.this, Items.class);
-		items.putExtra("token", token);
-		startActivity(items);
+		loginAndStartActivity(username, password);
 	}
 
 	private String getPassword() {
@@ -40,5 +38,46 @@ public class Login extends ActionBarActivity {
 	private String getUsername() {
 		TextView username = (TextView) findViewById(R.id.username);
 		return username.getText().toString();
+	}
+
+	private void loginAndStartActivity(final String username, final String password) {
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				final String token;
+				try {
+					token = read(username, password);
+					runOnUiThread(new Runnable() {
+						@Override
+						public void run() {
+							startActivity(token);
+						}
+					});
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}).start();
+	}
+
+	private void startActivity(String token) {
+		if (token == null)
+			return;
+		Log.d(token, token);
+		Intent items = new Intent(Login.this, Items.class);
+		items.putExtra("token", token);
+		startActivity(items);
+	}
+
+	private String read(String username, String password) throws IOException {
+		URL oracle = new URL("http://10.0.3.2/api/login/" + username + "/" + password);
+		BufferedReader in = new BufferedReader(
+				new InputStreamReader(oracle.openStream()));
+
+		String inputLine;
+		inputLine = in.readLine();
+		in.close();
+
+		return inputLine;
 	}
 }
