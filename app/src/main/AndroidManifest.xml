@@ -18,34 +18,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.ListActivity"
-            android:label="@string/title_activity_list" >
-        </activity>
-        <activity
-            android:name=".activities.AddListActivity"
-            android:label="@string/title_activity_add_list"
-            android:parentActivityName=".activities.LoginActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activities.LoginActivity" />
-        </activity>
-        <activity
-            android:name=".activities.AddTaskActivity"
-            android:label="@string/title_activity_add_task"
-            android:parentActivityName=".activities.ListActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activities.ListActivity" />
-        </activity>
-        <activity
-            android:name=".activities.UpdateListActivity"
-            android:label="@string/title_activity_update_list" >
-        </activity>
-        <activity
-            android:name=".activities.UpdateTaskActivity"
-            android:label="@string/title_activity_update_task" >
-        </activity>
-        <activity
             android:name=".activities.ItemsActivity"
             android:label="@string/title_activity_items" >
         </activity>
