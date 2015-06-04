@@ -35,10 +35,6 @@ public class ItemsActivity extends ActionBarActivity {
 	}
 
 	private void itemsUpdated() {
-		for(Item item : items.items) {
-			Log.d(item.name, item.action);
-		}
-
 		ListView listView = (ListView) findViewById(R.id.listView);
 
 		ItemAdapter adapter = new ItemAdapter(this, R.layout.list_simple_textview, items);
@@ -48,6 +44,7 @@ public class ItemsActivity extends ActionBarActivity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				/// perform action
+				Log.d("action: ", "" + items.items.get(position).action);
 			}
 		};
 		AdapterView.OnItemLongClickListener longClickListener = new AdapterView.OnItemLongClickListener() {
@@ -55,6 +52,7 @@ public class ItemsActivity extends ActionBarActivity {
 			@Override
 			public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
 				/// perform delete
+				Log.d("delete: ", "" + items.items.get(position).delete);
 				return true;
 			}
 		};
