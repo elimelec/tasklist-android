@@ -75,8 +75,7 @@ public class DB implements Database {
 		} catch (IOException e) {
 			numberOfLists = 0;
 		} catch (NumberFormatException e) {
-			e.printStackTrace();
-			throw new RuntimeException("exception!!!!!");
+			numberOfLists = 0;
 		}
 
 		Lists lists = new Lists();
