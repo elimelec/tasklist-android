@@ -8,33 +8,33 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.coloredflare.tasklist.R;
-import com.coloredflare.tasklist.datatypes.Tasks;
+import com.coloredflare.tasklist.datatypes.Items;
 
-public class TaskAdapter extends BaseAdapter {
+public class ItemAdapter extends BaseAdapter {
 
     private final Context context;
     private final int resource;
-    private final Tasks tasks;
+    private final Items items;
 
-    public TaskAdapter(Context context, int resource, Tasks tasks) {
+    public ItemAdapter(Context context, int resource, Items tasks) {
         this.context = context;
         this.resource = resource;
-        this.tasks = tasks;
+        this.items = tasks;
 
     }
     @Override
     public int getCount() {
-        return tasks.count();
+        return items.items.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return tasks.get(position);
+        return items.items.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        return tasks.get(position).getId();
+        return items.items.get(position).id;
     }
 
     @Override
@@ -46,9 +46,8 @@ public class TaskAdapter extends BaseAdapter {
         else
             rootView = convertView;
 
-        TextView textView = (TextView) rootView.findViewById(R.id.textView);
-        boolean checked = tasks.get(position).isChecked();
-        textView.setText((checked ? "[x] " : "[ ] ") + tasks.get(position).toString());
+        TextView name = (TextView) rootView.findViewById(R.id.name);
+        name.setText(items.items.get(position).name);
 
         return rootView;
     }

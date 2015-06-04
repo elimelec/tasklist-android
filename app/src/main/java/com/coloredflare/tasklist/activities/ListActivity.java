@@ -9,10 +9,9 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.coloredflare.tasklist.R;
-import com.coloredflare.tasklist.adapters.TaskAdapter;
+import com.coloredflare.tasklist.datatypes.Tasks;
 import com.coloredflare.tasklist.db.Database;
 import com.coloredflare.tasklist.db.DatabaseFactory;
-import com.coloredflare.tasklist.datatypes.Tasks;
 
 
 public class ListActivity extends ActionBarActivity {
@@ -51,9 +50,9 @@ public class ListActivity extends ActionBarActivity {
         tasks = database.getTasks(listId);
 
 
-        TaskAdapter adapter = new TaskAdapter(this, R.layout.list_simple_textview, tasks);
+//        ItemAdapter adapter = new ItemAdapter(this, R.layout.list_simple_textview, tasks);
 
-        listView.setAdapter(adapter);
+//        listView.setAdapter(adapter);
 
         AdapterView.OnItemClickListener listener = new AdapterView.OnItemClickListener() {
             @Override

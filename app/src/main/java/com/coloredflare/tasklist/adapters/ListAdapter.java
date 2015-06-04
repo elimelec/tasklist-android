@@ -5,9 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.TextView;
 
-import com.coloredflare.tasklist.R;
 import com.coloredflare.tasklist.datatypes.List;
 import com.coloredflare.tasklist.datatypes.Lists;
 
@@ -50,8 +48,8 @@ public class ListAdapter extends BaseAdapter{
         else
             rootView = convertView;
 
-        TextView textView = (TextView) rootView.findViewById(R.id.textView);
-        textView.setText(lists.get(position).toString());
+//        TextView textView = (TextView) rootView.findViewById(R.id.textView);
+//        textView.setText(lists.get(position).toString());
 
         return rootView;
     }

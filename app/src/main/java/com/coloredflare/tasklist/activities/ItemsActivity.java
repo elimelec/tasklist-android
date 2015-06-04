@@ -3,8 +3,12 @@ package com.coloredflare.tasklist.activities;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
 import com.coloredflare.tasklist.R;
+import com.coloredflare.tasklist.adapters.ItemAdapter;
 import com.coloredflare.tasklist.datatypes.Item;
 import com.coloredflare.tasklist.datatypes.Items;
 
@@ -34,6 +38,29 @@ public class ItemsActivity extends ActionBarActivity {
 		for(Item item : items.items) {
 			Log.d(item.name, item.action);
 		}
+
+		ListView listView = (ListView) findViewById(R.id.listView);
+
+		ItemAdapter adapter = new ItemAdapter(this, R.layout.list_simple_textview, items);
+		listView.setAdapter(adapter);
+
+		AdapterView.OnItemClickListener listener = new AdapterView.OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				/// perform action
+			}
+		};
+		AdapterView.OnItemLongClickListener longClickListener = new AdapterView.OnItemLongClickListener() {
+
+			@Override
+			public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+				/// perform delete
+				return true;
+			}
+		};
+
+		listView.setOnItemClickListener(listener);
+		listView.setOnItemLongClickListener(longClickListener);
 	}
 
 	private void readItems(final int parent) {
