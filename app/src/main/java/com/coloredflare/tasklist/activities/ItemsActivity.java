@@ -30,6 +30,12 @@ public class ItemsActivity extends ActionBarActivity {
 		setContentView(R.layout.items);
 	}
 
+	private void itemsUpdated() {
+		for(Item item : items.items) {
+			Log.d(item.name, item.name);
+		}
+	}
+
 	private void readItems(final int parent) {
 		new Thread(new Runnable() {
 			@Override
@@ -56,6 +62,12 @@ public class ItemsActivity extends ActionBarActivity {
 				items.items.add(Item.fromJSON(a.getJSONObject(i)));
 			}
 			this.items = items;
+			runOnUiThread(new Runnable() {
+				@Override
+				public void run() {
+					itemsUpdated();
+				}
+			});
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
